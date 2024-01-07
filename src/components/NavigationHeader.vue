@@ -9,6 +9,7 @@
       </div>
       <ul class="nav-routes">
         <RouterLink :to="{ name: 'todos' }">Home</RouterLink>
+        <RouterLink :to="{ name: 'about' }">About</RouterLink>
       </ul>
     </nav>
   </header>
