@@ -1,8 +1,11 @@
-<script setup></script>
+<script setup>
+import TodoCreateForm from "@/components/TodoCreateForm.vue";
+</script>
 
 <template>
   <main>
     <h1>Create To-do Task</h1>
+    <TodoCreateForm />
   </main>
 </template>
 
