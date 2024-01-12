@@ -1,9 +1,10 @@
 <script setup>
 import { Icon } from "@iconify/vue";
+import Todo from "@/types/Todo.js";
 
 defineProps({
   todo: {
-    type: Object,
+    type: Todo,
     required: true,
   },
 });
@@ -13,8 +14,8 @@ defineProps({
   <li>
     <input type="checkbox" :checked="todo.isCompleted" />
     <div class="todo">
-      <input v-if="todo.isEditing" type="text" :value="todo.todo" />
-      <span v-else>{{ todo.todo }}</span>
+      <input v-if="todo.isEditing" type="text" :value="todo.text" />
+      <span v-else>{{ todo.text }}</span>
     </div>
     <div class="todo-actions">
       <Icon

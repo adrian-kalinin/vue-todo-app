@@ -1,18 +1,13 @@
 <script setup>
 import { ref } from "vue";
-import { uid } from "uid";
 import TodoCreateForm from "@/components/TodoCreateForm.vue";
 import TodoItem from "@/components/TodoItem.vue";
+import Todo from "@/types/Todo.js";
 
 const todoList = ref([]);
 
-const createTodo = (todo) => {
-  todoList.value.push({
-    id: uid(),
-    todo: todo,
-    isCompleted: null,
-    isEditing: null,
-  });
+const createTodo = (text) => {
+  todoList.value.push(new Todo(text));
 };
 </script>
 
