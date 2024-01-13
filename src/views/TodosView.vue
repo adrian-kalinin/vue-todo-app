@@ -9,6 +9,10 @@ const todoList = ref([]);
 const createTodo = (text) => {
   todoList.value.push(new Todo(text));
 };
+
+const toggleTodoComplete = (index) => {
+  todoList.value[index].isCompleted = !todoList.value[index].isCompleted;
+};
 </script>
 
 <template>
@@ -16,7 +20,13 @@ const createTodo = (text) => {
     <h1>Create To-do Task</h1>
     <TodoCreateForm @create-todo="createTodo" />
     <ul v-if="todoList.length" class="todo-list">
-      <TodoItem v-for="todo in todoList" :key="todo.id" :todo="todo" />
+      <TodoItem
+        v-for="(todo, index) in todoList"
+        :key="index"
+        :todo="todo"
+        :index="index"
+        @toggle-complete="toggleTodoComplete"
+      />
     </ul>
     <p v-else class="todos-message">All done!</p>
   </main>
