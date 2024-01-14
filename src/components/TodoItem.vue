@@ -13,7 +13,7 @@ defineProps({
   },
 });
 
-defineEmits(["toggle-complete", "edit-todo", "update-todo"]);
+defineEmits(["toggle-complete", "edit-todo", "update-todo", "delete-todo"]);
 </script>
 
 <template>
@@ -56,6 +56,7 @@ defineEmits(["toggle-complete", "edit-todo", "update-todo"]);
         icon="ph:trash"
         color="#f95e5e"
         width="22"
+        @click="$emit('delete-todo', todo.id)"
       />
     </div>
   </li>
