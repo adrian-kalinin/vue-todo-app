@@ -25,7 +25,7 @@ const createTodo = () => {
 
 <template>
   <div class="input-wrap" :class="{ 'input-error': !todoState.valid }">
-    <input type="text" v-model="todoState.todo" />
+    <input v-model="todoState.todo" type="text" />
     <button @click="createTodo">Create</button>
   </div>
   <p v-show="!todoState.valid" class="error-message">{{ todoState.error }}</p>
