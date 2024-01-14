@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import TodoCreateForm from "@/components/TodoCreateForm.vue";
 import TodoItem from "@/components/TodoItem.vue";
 import Todo from "@/types/Todo.js";
@@ -16,6 +16,10 @@ watch(
   },
   { deep: true },
 );
+
+const todosCompleted = computed(() => {
+  return todoList.value.every((todo) => todo.isCompleted);
+});
 
 const createTodo = (text) => {
   todoList.value.push(new Todo(text));
@@ -54,7 +58,10 @@ const deleteTodo = (todoId) => {
         @delete-todo="deleteTodo"
       />
     </ul>
-    <p v-else class="todos-message">All done!</p>
+    <p v-else class="todos-message">😴 You have no todos, create a new one!</p>
+    <p v-if="todosCompleted && todoList.length" class="todos-message">
+      🎉 All done, congrats!
+    </p>
   </main>
 </template>
 
