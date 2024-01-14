@@ -1,10 +1,21 @@
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import TodoCreateForm from "@/components/TodoCreateForm.vue";
 import TodoItem from "@/components/TodoItem.vue";
 import Todo from "@/types/Todo.js";
+import { retrieveTodoList, saveTodoList } from "@/services/todos.js";
 
 const todoList = ref([]);
+
+todoList.value = retrieveTodoList();
+
+watch(
+  todoList,
+  () => {
+    saveTodoList(todoList.value);
+  },
+  { deep: true },
+);
 
 const createTodo = (text) => {
   todoList.value.push(new Todo(text));
